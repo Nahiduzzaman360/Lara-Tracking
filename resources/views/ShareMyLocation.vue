@@ -9,6 +9,8 @@
             class="bg-gray-700 px-4 py-2 rounded-md hover:bg-secondary/80 text-xs sm:text-sm md:text-base">Copy Secret Key</button>
         </header>
         <div id="map" class="min-h-screen">
+        <p>latitude: {{ latitude }}</p>
+        <p>longitude: {{ longitude }}</p>
         </div>
     </div>
 </template>
@@ -32,8 +34,8 @@ const getLocation = () => {
       (position) => {
         console.log(position.coords);
         
-        // latitude.value = position.coords.latitude;
-        // longitude.value = position.coords.longitude;
+        latitude.value = position.coords.latitude;
+        longitude.value = position.coords.longitude;
 
         // if (!map.value) {
         //   map.value = L.map('map').setView([latitude.value, longitude.value], 13);
