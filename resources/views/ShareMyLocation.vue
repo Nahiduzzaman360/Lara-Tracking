@@ -19,6 +19,7 @@
 import { inject, onMounted, ref, watch } from 'vue';
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import { useToast } from 'vue-toastification';
 
 const pusher = inject("pusher");
 
@@ -28,11 +29,14 @@ const longitude = ref(null)
 const map = ref(null)
 const marker = ref(null)
 
+const toast = useToast()
+
 const getLocation = () => {
   if (navigator.geolocation) {
     navigator.geolocation.watchPosition(
       (position) => {
-        console.log(position.coords);
+        toast.success(`"${position.coords.latitude}"`)
+        toast.info(`"${position.coords.longitude}"`)
         
         latitude.value = position.coords.latitude;
         longitude.value = position.coords.longitude;
