@@ -6,9 +6,9 @@
     </div>
 
     <div class="flex flex-col items-center justify-center flex-grow -mt-20">
-      <form class="flex gap-2 mb-10" action="#" method="POST">
-        <input type="search" placeholder="Secret Code"
-          class="px-4 py-2 bg-input rounded-md border border-border focus:ring focus:ring-ring focus:outline-none" />
+      <form class="flex gap-2 mb-10" action="#" method="POST" @submit.prevent="trackLocation()">
+        <input type="search" placeholder="Secret Code" v-model="secretKey"
+          class="px-4 py-2 bg-input rounded-md border border-border focus:ring focus:ring-ring focus:outline-none" required/>
         <button type="submit"
           class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-600/80">Locate Now</button>
       </form>
@@ -26,10 +26,11 @@
 <script setup>
 import { useToast } from 'vue-toastification';
 import { useRouter } from 'vue-router';
+import { ref } from 'vue';
 
 const toast = useToast()
 const router = useRouter();
-
+const secretKey = ref("")
 
 function shareMyLocation(){
   if (navigator.geolocation) {
@@ -45,6 +46,12 @@ function shareMyLocation(){
         maximumAge: 0
       }
     );
+  }
+}
+
+function trackLocation(){
+  if(secretKey.value){
+    router.push({name: 'trackLocation', params: {secret_key: secretKey.value}})
   }
 }
 

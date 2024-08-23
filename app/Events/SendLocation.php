@@ -30,7 +30,7 @@ class SendLocation implements ShouldBroadcastNow
      */
     public function broadcastOn()
     {
-        return new Channel('location');
+        return new Channel('location-'.$this->location['secret-key']);
     }
     public function broadcastAs()
     {

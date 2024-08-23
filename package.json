@@ -12,6 +12,7 @@
     },
     "dependencies": {
         "@vitejs/plugin-vue": "^5.1.2",
+        "js-cookie": "^3.0.5",
         "leaflet": "^1.9.4",
         "pusher-js": "^8.4.0-rc2",
         "vue": "^3.4.38",
